@@ -1,10 +1,9 @@
 import { User } from "../models/userModel.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { sendMail } from "../utils/resend.js";
+import { sendMail } from "../utils/nodemailer.js"; 
 
-
-
+// REGISTER USER
 export const register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
@@ -46,7 +45,7 @@ export const register = async (req, res) => {
   }
 };
 
-
+// LOGIN USER
 export const login = async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -82,7 +81,7 @@ export const login = async (req, res) => {
   }
 };
 
-
+// SEND OTP
 export const sendOtp = async (req, res) => {
   try {
     const { email } = req.body;
@@ -95,7 +94,12 @@ export const sendOtp = async (req, res) => {
     user.otpExpiry = Date.now() + 10 * 60 * 1000; // 10 mins
     await user.save();
 
-    await sendMail(email, "Your OTP Code", `Your OTP code is ${otp}. It expires in 5 minutes.`);
+    //  message via NodeMailer
+    await sendMail(
+      email,
+      "Verify Your Email - OTP Code",
+      otp 
+    );
 
     res.status(200).json({ success: true, message: "OTP sent successfully!" });
   } catch (error) {
@@ -104,8 +108,7 @@ export const sendOtp = async (req, res) => {
   }
 };
 
-
-
+// VERIFY OTP
 export const verifyOtp = async (req, res) => {
   try {
     const { email, otp } = req.body;
@@ -113,7 +116,8 @@ export const verifyOtp = async (req, res) => {
     const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ success: false, message: "User not found" });
 
-    if (user.otp !== otp) return res.status(400).json({ success: false, message: "Invalid OTP" });
+    if (user.otp !== otp)
+      return res.status(400).json({ success: false, message: "Invalid OTP" });
 
     if (user.otpExpiry < Date.now()) {
       return res.status(400).json({ success: false, message: "OTP expired" });
@@ -131,7 +135,7 @@ export const verifyOtp = async (req, res) => {
   }
 };
 
-
+// GET USER DETAILS
 export const getMe = async (req, res) => {
   try {
     const token = req.cookies.token;
@@ -148,14 +152,13 @@ export const getMe = async (req, res) => {
   }
 };
 
-
-export const logout = (req, res) => {
-  return res
-    .clearCookie("token", {
-      httpOnly: true,
-      secure: true,
-      sameSite: "none",
-    })
-    .status(200)
-    .json({ message: "Logged out successfully" });
+// LOGOUT USER
+export const logout = async (_, res) => {
+  try {
+    return res.status(200)
+      .cookie("token", " ", { maxAge: 0 })
+      .json({ message: "Logged out successfully" });
+  } catch (err) {
+    console.error(err);
+  }
 };

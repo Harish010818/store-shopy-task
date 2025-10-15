@@ -4,35 +4,33 @@ import axios from "axios";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+
+  const [authuser, setAuthUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // ✅ Check user login status on refresh
+
   useEffect(() => {
     const checkAuth = async () => {
+      setLoading(true);
       try {
-        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/user/me`, {
-          withCredentials: true,
-        });
-        setUser(res.data.user);
-      } catch {
-        setUser(null);
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/v1/user/me`,
+          { withCredentials: true }
+        );
+        setAuthUser(res.data.user);
+      } catch (error) {
+        setAuthUser(null);
       } finally {
         setLoading(false);
       }
     };
+    
+
     checkAuth();
   }, []);
 
-  const logout = async () => {
-    await axios.get(`${import.meta.env.VITE_API_URL}/api/user/logout`, {
-      withCredentials: true,
-    });
-    setUser(null);
-  };
-
   return (
-    <AuthContext.Provider value={{ user, setUser, logout, loading }}>
+    <AuthContext.Provider value={{ authuser, setAuthUser, loading }}>
       {children}
     </AuthContext.Provider>
   );

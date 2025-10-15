@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios";
 import toast from 'react-hot-toast';
+import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -12,6 +13,7 @@ const Login = () => {
   const [errors, setErrors] = useState({});
   
   const navigate = useNavigate();
+
 
   const validateForm = () => {
     const newErrors = {};
@@ -36,7 +38,7 @@ const Login = () => {
     }  
 
     try {
-      const res = await axios.post( `${import.meta.env.VITE_API_URL}/api/user/login`, 
+      const res = await axios.post( `${import.meta.env.VITE_API_URL}/api/v1/user/login`, 
           user, 
         {
           headers: {'Content-Type': 'application/json'},
@@ -44,14 +46,18 @@ const Login = () => {
         }  
     );
 
-    if(res){
-        navigate("/");
-        toast.success(res.data.message);
-    }
+    if(res){ 
+    localStorage.setItem("authUser", JSON.stringify(res.data.user)); 
+    toast.success(res.data.message);
+    
+    setTimeout(()=> {
+      navigate("/");
+    }, 2000)
+}
 
 
     } catch (error) {
-      toast.error(error.response?.data?.message);
+      toast.error(error.response?.data?.message || "something went wrong");
       console.log(error);
     }
     setUser({

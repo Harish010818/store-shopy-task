@@ -51,11 +51,13 @@ const Signup = () => {
       if (res.data.success) {
         toast.success("Registered successfully! Sending OTP...");
         setEmailForOTP(user.email);
-
+        
+        console.log("send");
         await axios.post(`${import.meta.env.VITE_API_URL}/api/v1/user/send-otp`, {
           email: user.email,
         });
-
+        
+        console.log("not came here");
         toast.success("OTP sent to your email!");
         setOtpSent(true);
       }
@@ -64,7 +66,7 @@ const Signup = () => {
     }
   };
 
-  // ✅ OTP verification handler
+  //  OTP verification handler
   const verifyOtpHandler = async (e) => {
     e.preventDefault();
 
@@ -80,8 +82,8 @@ const Signup = () => {
       });
 
       if (res.data.success) {
-        toast.success("Email verified successfully!");
-        navigate("/login");
+         toast.success("Email verified successfully!");
+         navigate("/login");
       } else {
         toast.error(res.data.message || "Invalid OTP");
       }

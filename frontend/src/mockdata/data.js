@@ -13,7 +13,7 @@ export const courses = [
   },
   {
     id: 2,
-    image: "https://img.freepik.com/premium-photo/it-developer-working-online-software-development-coding-pc-screens-gusher_31965-300195.jpg?semt=ais_hybrid&w=740&q=80",
+    image: "https://degordian.com/wp-content/uploads/2024/04/Creative-Stages-of-Branding-Design-Step-by-Step-Guide-1.webp",
     category: "UI/UX DESIGN",
     tagColor: "text-purple-600 bg-purple-100",
     title: "Optimizing User Experience with the Best UI/UX Design",
@@ -25,7 +25,7 @@ export const courses = [
   },
   {
     id: 3,
-    image: "https://img.freepik.com/premium-photo/it-developer-working-online-software-development-coding-pc-screens-gusher_31965-300195.jpg?semt=ais_hybrid&w=740&q=80",
+    image: "https://mlyx2uz0zaat.i.optimole.com/cb:tThl.5002c/w:412/h:206/q:90/f:best/https://www.moo.com/blog/wp-content/uploads/sites/2/2018/07/brand-building-101-2-24-07-18.jpg",
     category: "BRANDING",
     tagColor: "text-pink-600 bg-pink-100",
     title: "Reviving and Refreshing Company Image",

@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import {
-    LayoutDashboard, Mail, BookOpenText, ListChecks, Users, Settings, LogOut, Diamond,
-} from 'lucide-react';
+import { useNavigate } from "react-router-dom";
+import { Mail, BookOpenText, ListChecks, Users, Settings, LogOut } from 'lucide-react';
 import { MdSpaceDashboard } from "react-icons/md";
 import { friendsList } from '../mockdata/data.js';
+import { Navigate } from 'react-router-dom';
 
 // Data for the sidebar sections
 const overviewLinks = [
@@ -23,25 +23,27 @@ const settingsLinks = [
 ];
 
 
+
+// Helper Component for Navigation Items (Overview/Settings)
+const NavItem = ({ name, Icon, active, isLogout }) => {
+    const navigate = useNavigate();
+
     const logoutHandler = async () => {
         try {
-
             const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/user/logout`,
                 {
                     withCredentials: true
                 });
 
-            navigate("/login");
-            toast.success(res.data.message)
+            if (res) {
+                navigate("/login");
+                toast.success(res.data.message)
+            }
         } catch (error) {
             console.log(error);
         }
-    }
+    } 
 
-
-
-// Helper Component for Navigation Items (Overview/Settings)
-const NavItem = ({ name, Icon, active, isLogout }) => {
     const textColor = isLogout
         ? 'text-orange-500 hover:text-orange-600'
         : active
@@ -71,11 +73,11 @@ const FriendItem = ({ name, status, initials, color }) => (
         <div
             className={`w-8 h-8 ${color} text-black text-xs flex items-center justify-center rounded-full flex-shrink-0`}
         >
-            <img 
-               src={`https://api.dicebear.com/8.x/notionists/svg?seed=${name}&radius=50&backgroundColor=b6e3f4,c0aede,d1d4f9`} 
-               alt={name}
-               className="w-full h-full object-cover"
-             />
+            <img
+                src={`https://api.dicebear.com/8.x/notionists/svg?seed=${name}&radius=50&backgroundColor=b6e3f4,c0aede,d1d4f9`}
+                alt={name}
+                className="w-full h-full object-cover"
+            />
         </div>
         <div className="flex flex-col">
             <span className="text-sm font-medium text-gray-800">{name}</span>
@@ -86,7 +88,7 @@ const FriendItem = ({ name, status, initials, color }) => (
 
 // Main Sidebar Component
 const Sidebar = () => {
-    // Use a max-w to keep it visually consistent even if the screen is huge, but use the w-[250px] for width
+    
     return (
         <div className="w-[250px] max-w-[280px]  bg-white rounded-r-xl">
 
@@ -105,7 +107,7 @@ const Sidebar = () => {
             <div className="p-4 flex flex-col gap-24">
                 {/* 2. Overview Section */}
                 <div className='flex flex-col gap-4'>
-                      <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2 px-3">
+                    <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-2 px-3">
                         Overview
                     </h3>
                     <nav className="space-y-1">

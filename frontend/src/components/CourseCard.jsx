@@ -3,13 +3,13 @@ import { Heart } from "lucide-react";
 
 const CourseCard = ({ image, category, title, mentor, tagColor }) => {
   return (
-    <div className="bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
+    <div className="rounded-2xl  overflow-hidden  transition-shadow duration-300">
       {/* Thumbnail */}
       <div className="relative">
         <img
           src={image}
           alt={title}
-          className="w-full h-24 object-cover"
+          className="w-80 h-32 object-cover rounded-3xl"
         />
         <button className="absolute top-3 right-3 bg-white/70 hover:bg-white rounded-full p-1.5 transition">
           <Heart className="w-4 h-4 text-gray-700" />
@@ -44,8 +44,8 @@ const CourseCard = ({ image, category, title, mentor, tagColor }) => {
         </div>
 
         {/* Progress Bar */}
-        <div className="mt-3 w-full bg-gray-200 rounded-full h-1.5">
-          <div className="bg-indigo-500 h-1.5 rounded-full w-2/5"></div>
+        <div className="mt-3 w-80 bg-gray-200 rounded-full h-1.5">
+          <div className="bg-[var(--primary-purple)] h-1.5 rounded-full w-2/5"></div>
         </div>
       </div>
     </div>

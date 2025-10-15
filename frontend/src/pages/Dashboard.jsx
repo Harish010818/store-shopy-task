@@ -81,10 +81,10 @@ const Dashboard = () => {
                   <div className="relative overflow-hidden">
                     {/* Inner Scrollable Row */}
                     <div
-                      className="flex gap-4  scroll-smooth  pb-2"
+                      className="flex gap-4 bg-white scroll-smooth pb-2"
                     >
                       {courses.map((course) => (
-                        <div key={course.id} className="flex-shrink-0 w-80 bg-white">
+                        <div key={course.id} className="flex-shrink-0 w-80">
                           <CourseCard {...course} />
                         </div>
                       ))}
