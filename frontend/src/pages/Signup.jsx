@@ -38,9 +38,9 @@ const Signup = () => {
       toast.error("Form validation error");
       return;
     }
-
+   
     try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/user/register`,
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/v1/user/register`,
         user,
         {
           headers: { 'Content-Type': 'application/json' },
@@ -52,8 +52,7 @@ const Signup = () => {
         toast.success("Registered successfully! Sending OTP...");
         setEmailForOTP(user.email);
 
-        // Call OTP API (Mailgun email send)
-        await axios.post(`${import.meta.env.VITE_API_URL}/api/user/send-otp`, {
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/v1/user/send-otp`, {
           email: user.email,
         });
 
@@ -75,7 +74,7 @@ const Signup = () => {
     }
 
     try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/user/verify-otp`, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/v1/user/verify-otp`, {
         email: emailForOTP,
         otp
       });

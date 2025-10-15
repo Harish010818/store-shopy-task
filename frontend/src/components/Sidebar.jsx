@@ -1,5 +1,5 @@
 import React from 'react';
-import axos from 'axios';
+import axios from 'axios';
 import {
     LayoutDashboard, Mail, BookOpenText, ListChecks, Users, Settings, LogOut, Diamond,
 } from 'lucide-react';

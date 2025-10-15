@@ -18,7 +18,7 @@ app.use(cookieParser());
 
 app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
 
-app.use("/api/user", userRout);
+app.use("/api/v1/user", userRout);
 
 const PORT = process.env.PORT || 3000;
 
