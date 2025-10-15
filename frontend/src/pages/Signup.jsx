@@ -93,7 +93,7 @@ const Signup = () => {
 
   return (
     <div className='min-h-screen flex items-center justify-center bg-[var(--bg)] text-black px-4'>
-      <div className="text-black w-full max-w-96 bg-[var(--homepage-white)] rounded-4xl shadow-xl shadow-gray-300 p-12 space-y-6">
+      <div className="text-black w-full max-w-96 bg-[var(--homepage-white)] rounded-4xl shadow shadow-gray-300 p-12 space-y-6">
         <h1 className='text-3xl font-bold text-center'>
           {otpSent ? "Verify Email" : "Sign up"}
         </h1>

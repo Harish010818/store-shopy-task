@@ -1,7 +1,7 @@
 export const courses = [
   {
     id: 1,
-    image: "/images/frontend.jpg",
+    image: "https://img.freepik.com/premium-photo/it-developer-working-online-software-development-coding-pc-screens-gusher_31965-300195.jpg?semt=ais_hybrid&w=740&q=80",
     category: "FRONT END",
     tagColor: "text-sky-600 bg-sky-100",
     title: "Beginner’s Guide to Becoming a Professional Front-End Developer",
@@ -13,7 +13,7 @@ export const courses = [
   },
   {
     id: 2,
-    image: "/images/uiux.jpg",
+    image: "https://img.freepik.com/premium-photo/it-developer-working-online-software-development-coding-pc-screens-gusher_31965-300195.jpg?semt=ais_hybrid&w=740&q=80",
     category: "UI/UX DESIGN",
     tagColor: "text-purple-600 bg-purple-100",
     title: "Optimizing User Experience with the Best UI/UX Design",
@@ -25,7 +25,7 @@ export const courses = [
   },
   {
     id: 3,
-    image: "/images/branding.jpg",
+    image: "https://img.freepik.com/premium-photo/it-developer-working-online-software-development-coding-pc-screens-gusher_31965-300195.jpg?semt=ais_hybrid&w=740&q=80",
     category: "BRANDING",
     tagColor: "text-pink-600 bg-pink-100",
     title: "Reviving and Refreshing Company Image",
