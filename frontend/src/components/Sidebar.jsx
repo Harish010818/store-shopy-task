@@ -1,4 +1,5 @@
 import React from 'react';
+import axos from 'axios';
 import {
     LayoutDashboard, Mail, BookOpenText, ListChecks, Users, Settings, LogOut, Diamond,
 } from 'lucide-react';
@@ -21,6 +22,24 @@ const settingsLinks = [
     { name: 'Logout', icon: LogOut, isLogout: true },
 ];
 
+
+    const logoutHandler = async () => {
+        try {
+
+            const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/user/logout`,
+                {
+                    withCredentials: true
+                });
+
+            navigate("/login");
+            toast.success(res.data.message)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+
 // Helper Component for Navigation Items (Overview/Settings)
 const NavItem = ({ name, Icon, active, isLogout }) => {
     const textColor = isLogout
@@ -34,6 +53,7 @@ const NavItem = ({ name, Icon, active, isLogout }) => {
     return (
         <div
             className={`flex items-center space-x-3 p-3 ml-2 cursor-pointer transition-colors duration-150 rounded-lg ${bgColor} ${textColor}`}
+            onClick={logoutHandler}
         >
             <Icon
                 className={active ? 'text-[var(--primary-purple)]' : isLogout ? 'text-orange-500' : 'text-black'}
