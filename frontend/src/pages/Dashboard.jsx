@@ -5,7 +5,7 @@ import CourseCard from "../components/CourseCard";
 import StatisticCard from "../components/StatisticCard";
 import MentorCard from "../components/MentorCard";
 import ProgressBar from "../components/Chips";
-import { courses, mentors } from "../data/mockData";
+import { courses, mentors } from "../data/mockData.js";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdOutlineDesignServices } from "react-icons/md";
 import { MdOutlineBrandingWatermark } from "react-icons/md";
