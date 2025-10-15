@@ -1,6 +1,6 @@
 import React from 'react';
 import { Plus, MoreVertical } from 'lucide-react';
-import { barChartData, mentors } from '../data/mockData.js';
+import { barChartData, mentors } from '../mockdata/data.js';
 import MentorCard from './MentorCard';
 
 

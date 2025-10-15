@@ -4,7 +4,7 @@ import {
     LayoutDashboard, Mail, BookOpenText, ListChecks, Users, Settings, LogOut, Diamond,
 } from 'lucide-react';
 import { MdSpaceDashboard } from "react-icons/md";
-import { friendsList } from '../data/mockData.js';
+import { friendsList } from '../mockdata/data.js';
 
 // Data for the sidebar sections
 const overviewLinks = [
