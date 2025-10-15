@@ -10,6 +10,7 @@ import { MdOutlineBrandingWatermark } from "react-icons/md";
 import { MdFlipToFront } from "react-icons/md";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Lessons from "../components/LessonCard";
+import { courses } from "../data/mockData";
 
 const Dashboard = () => {
   return (
